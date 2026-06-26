@@ -1,0 +1,16 @@
+package required - pip install scikit-learn
+
+
+Step 2) Complete Program - 
+from sklearn import datasets
+from sklearn.model_selection import train_test_split
+from sklearn.svm import SVC
+data = datasets.load_iris()
+X = data.data
+y = data.target
+X_train, X_test, y_train, y_test = train_test_split(X, y)
+model = SVC()
+model.fit(X_train, y_train)
+prediction = model.predict(X_test)
+print(prediction)
+
