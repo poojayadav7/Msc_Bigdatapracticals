@@ -1,0 +1,16 @@
+First save this data in excel as students.csv - 
+1,Rahul,80
+2,Priya,90
+3,Amit,70
+4,Neha,95
+
+Code- 
+students = LOAD 'students.csv'
+USING PigStorage(',')
+AS (id:int,name:chararray,marks:int);
+highmarks = FILTER students BY marks > 80;
+grp = GROUP students ALL;
+cnt = FOREACH grp GENERATE COUNT(students);
+DUMP highmarks;
+DUMP cnt;
+
