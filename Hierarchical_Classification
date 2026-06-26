@@ -1,0 +1,20 @@
+1)Required Packages
+pip install scikit-learn scipy matplotlib
+
+2)Code-
+from sklearn.datasets import load_wine
+from scipy.cluster.hierarchy import dendrogram, linkage
+import matplotlib.pyplot as plt
+
+# Load dataset
+wine = load_wine()
+X = wine.data
+
+# Hierarchical clustering
+Z = linkage(X, method='ward')
+
+# Plot dendrogram
+dendrogram(Z)
+
+plt.title("Hierarchical Clustering")
+plt.show()
