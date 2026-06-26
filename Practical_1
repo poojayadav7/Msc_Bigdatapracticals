@@ -1,0 +1,150 @@
+ALL STEPS FOR SETTING UP HADDOP AND JAVA JDK
+
+Steps - 
+Uninstall java jdk if java jdk 8 or 11 is not available
+Control panel > view by category > program and features > uninstall
+
+Downloading java  
+Download java first type- Eclipse temurin JDK 8 , Download for windows x64 bit MSI
+Double-click the downloaded .msi file.
+Click Next.
+Keep default settings.
+Click Install.
+Wait for installation to complete.
+Click Finish.
+Example installation location:
+C:\Program Files\Eclipse Adoptium\jdk-8.0.xxx
+Find the JDK folder, Remember that  path. 
+Open Environment Variables 
+ Press Windows + R > Type: sysdm.cpl > enter > Advanced tab > Environment Variable > New > Variablename eg- JAVA_HOME > Variable path eg- C:\Program Files\Java\jdk1.8.0_451 > ok 
+In System Variables > select path > click edit > click New > Add- %JAVA_HOME%\bin  >  Click OK → OK → OK 
+( once above all done you can check the java installation in cmd - java -version ) 
+
+
+
+Download Hadoop 
+Open Google > Type : Apache Hadoop download  ( Open the official Hadoop website. )  > On that table, click:
+3.4.1 → binary
+Do NOT click:
+source
+checksum
+signature
+Binary-aarch64
+
+After clicking, a file similar to this will download:
+hadoop-3.4.1.tar.gz  Or  hadoop-3.4.1.zip  
+After downloading: If it is .zip
+Right-click → Extract All
+  If it is .tar.gz
+Install 7-Zip:
+                  Search Google:
+                  7 zip download
+Download and install 7-Zip.
+        Then: Right Click
+→ 7-Zip
+→ Extract Here
+You may need to extract twice:
+.tar.gz
+↓
+.tar
+↓
+Folder
+
+
+Finally you should get:
+C:\hadoop-3.4.1
+Rename it to:
+  C:\hadoop
+
+Step 6: Set HADOOP_HOME as environmental variable
+Again click New.
+       Variable Name: - HADOOP_HOME
+       Variable Value: C:\hadoop > Click OK. 
+        Path > edit add > new > %HADOOP_HOME%\bin > OK → OK → OK 
+
+Create Hadoop Data Folders -
+C:\hadoopdata\namenode > C:\hadoopdata\datanode
+C:
+ └── hadoopdata
+      ├── namenode
+      └── datanode
+   6 ) Open Hadoop Configuration Folder 
+     Go to: C:\hadoop\etc\hadoop > You will see:  core-site.xml
+hdfs-site.xml
+mapred-site.xml
+Yarn-site.xml  
+
+
+
+
+—---------How to run Hadoop ,Upload and download file—----------
+Part 1: Start Hadoop
+Step 1: Open Command Prompt
+Press:
+Windows Key + R
+Type:
+cmd
+Press Enter.
+A black Command Prompt window opens.
+
+Step 2: Check Hadoop
+Type:
+hadoop version
+Press Enter.
+If Hadoop is installed properly, you will see something like:
+           Hadoop 3.4.1
+If it says:
+'hadoop' is not recognized
+then HADOOP_HOME or Path is not configured correctly.
+
+
+
+Step 3: Format NameNode (First Time Only)
+Think of formatting as initializing Hadoop storage.
+Type:     hdfs namenode -format
+Press Enter. —--- Wait 1–2 minutes.
+At the end, you should see:   Storage directory initialized
+Or   successfully formatted
+Important —- Do this only once when setting up Hadoop.
+
+Step 4: Move to Hadoop sbin Folder
+Type:
+cd C:\hadoop\sbin
+Press Enter.
+Check you're in the correct folder:
+dir
+You should see files like:
+start-dfs.cmd
+start-yarn.cmd
+stop-dfs.cmd
+
+
+
+
+Step 5)  Start HDFS
+Type:
+start-dfs.cmd
+Press Enter.
+Wait for a few seconds.
+2. Start YARN
+Type:
+start-yarn.cmd
+Press Enter.
+Wait for a few seconds.
+3. Check if Hadoop Started
+Open Chrome and type:
+http://localhost:9870
+If a Hadoop page opens, Hadoop is running.
+
+Step 6) 4. Now Perform File Operations
+Create a folder:
+hdfs dfs -mkdir /input
+Upload a file:
+hdfs dfs -put sample.txt /input
+See uploaded files:
+hdfs dfs -ls /input
+
+Read file:
+hdfs dfs -cat /input/sample.txt
+Download file:
+hdfs dfs -get /input/sample.txt C:\download
