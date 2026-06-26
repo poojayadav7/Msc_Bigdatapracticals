@@ -1,0 +1,29 @@
+Step 1) - Required Package
+pip install scikit-learn
+pip install matplotlib
+
+Step 2) - Program
+from sklearn.datasets import load_iris
+from sklearn.cluster import KMeans
+import matplotlib.pyplot as plt
+
+iris = load_iris()
+X = iris.data
+kc = KMeans(n_clusters=3, n_init=10, random_state=0)
+kc.fit(X)
+
+print("Actual Species:")
+print(iris.target)
+print("\nCluster Labels:")
+print(kc.labels_)
+plt.scatter(X[:,0], X[:,1], c=kc.labels_)
+plt.scatter(kc.cluster_centers_[:,0],
+            kc.cluster_centers_[:,1],
+            marker='*',
+            s=200)
+
+plt.xlabel("Sepal Length")
+plt.ylabel("Sepal Width")
+plt.title("K-Means Clustering on Iris Dataset")
+plt.show()
+
