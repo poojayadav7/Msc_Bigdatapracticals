@@ -1,0 +1,17 @@
+# Weather temperatures
+temps = [30, 32, 28, 35, 31]
+
+# MAP
+mapped = [(temp, 1) for temp in temps]
+
+# REDUCE
+total = 0
+count = 0
+
+for temp, c in mapped:
+    total += temp
+    count += c
+
+average = total / count
+
+print("Average Temperature =", average)
