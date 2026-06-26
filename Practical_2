@@ -1,0 +1,25 @@
+Step 1: Install required library 
+
+pip install pandas scikit-learn matplotlib
+
+
+
+Step 2: Python Program 
+
+from sklearn.tree import DecisionTreeClassifier, plot_tree
+from sklearn import datasets
+import matplotlib.pyplot as plt
+
+# Load sample dataset
+data = datasets.load_iris()
+
+# Create model
+model = DecisionTreeClassifier()
+
+# Train model
+model.fit(data.data, data.target)
+
+# Display tree
+plt.figure(figsize=(10,6))
+plot_tree(model, filled=True)
+plt.show()
