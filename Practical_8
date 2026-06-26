@@ -1,0 +1,27 @@
+Step 1) - Required Package
+pip install pandas scikit-learn
+
+
+Step 2) - Program
+import pandas as pd
+from sklearn.linear_model import LinearRegression
+df = pd.DataFrame({
+    "youtube":[276.12,53.40,20.64],
+    "facebook":[45.36,47.16,55.08],
+    "newspaper":[83.04,54.12,83.16],
+    "sales":[26.52,12.48,11.16]
+})
+X = df[["youtube","facebook","newspaper"]]
+y = df["sales"]
+
+
+
+model = LinearRegression()
+model.fit(X,y)
+print("Intercept =", model.intercept_)
+print("Coefficients =", model.coef_)
+print("Predicted Sales =", model.predict(X))
+
+
+
+
